@@ -1,5 +1,3 @@
-Here’s a corrected and improved version of your `README.md`:
-
 ---
 
 # InfraLive Demo
@@ -52,13 +50,3 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
-
-### Key Improvements
-1. **Clarity**: Improved the structure and readability of the instructions.
-2. **Details**: Added prerequisites and steps for verifying the bucket.
-3. **Future Enhancements**: Mentioned potential future updates.
-4. **Contributing**: Added a section for contributions.
-5. **License**: Added a placeholder for the license.
-
-Let me know if you need further adjustments!
