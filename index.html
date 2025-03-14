@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy S3 Bucket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deploy S3 Bucket</h1>
+        <form id="deployForm">
+            <input type="password" id="accessKey" placeholder="AWS Access Key ID" required>
+            <input type="password" id="secretKey" placeholder="AWS Secret Access Key" required>
+            <input type="text" id="bucket" placeholder="Bucket Name" required>
+            <input type="text" id="region" placeholder="Region (e.g., us-east-1)" required>
+            <button type="submit">Deploy</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('deployForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const accessKey = document.getElementById('accessKey').value;
+            const secretKey = document.getElementById('secretKey').value;
+            const bucket = document.getElementById('bucket').value;
+            const region = document.getElementById('region').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/create-bucket', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ accessKey, secretKey, bucket, region }),
+                });
+
+                const result = await response.text();
+                document.getElementById('message').innerText = result;
+            } catch (error) {
+                document.getElementById('message').innerText = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
